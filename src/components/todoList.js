@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { View, Text } from '@tarojs/components'
+import { AtIcon } from 'taro-ui'
 
 const GetVisibleTodos = () => {
     const { todos,filter } = useSelector(state => ({ todos: state.todos ,filter:state.filter}))
@@ -23,8 +24,9 @@ const GetVisibleTodos = () => {
         (t) => {
             return (
                 <View key={t.index}>
+                <AtIcon value={t.completed?'check-circle':'close-circle'} size='22'></AtIcon>
                     <Text onClick={() => dispatch({ type: 'click', index: t.index })} style={{ textDecoration: t.completed ? 'line-through' : 'none' }} >
-                        {t.text}
+                    {t.text}
                     </Text>
                 </View>
             )
